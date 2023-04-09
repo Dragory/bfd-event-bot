@@ -3,7 +3,7 @@ import { EasterEventPluginType } from "../types";
 import { checkMessageForEggs } from "./checkMessageForEggs";
 
 const snowflakeRegex = /^\d{18,22}$/i;
-const messageLinkRegex = /^https:\/\/(?:[^\s.]+\.)discord.com\/channels\/\d+\/\d+\/(\d{18,22})\/?$/i;
+const messageLinkRegex = /^https:\/\/(?:[^\s.]+\.)?discord.com\/channels\/\d+\/\d+\/(\d{18,22})\/?$/i;
 
 export const findEggSlashCommand = guildPluginSlashCommand<EasterEventPluginType>()({
   name: "egg",
