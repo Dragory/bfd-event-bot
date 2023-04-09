@@ -1,5 +1,5 @@
 version: '3'
-name: bfd-event-bot-prod
+name: bfd-event-bot-dev
 services:
   mysql:
     image: mysql:8.0
@@ -19,23 +19,23 @@ services:
       timeout: 300s
       retries: 60
 
-  bot:
+  devenv:
     build:
-      context: ./docker/production/app
+      context: ./docker/development/devenv
       args:
         DOCKER_HOST_UID: ${DOCKER_HOST_UID:?Missing DOCKER_HOST_UID}
         DOCKER_HOST_GID: ${DOCKER_HOST_GID:?Missing DOCKER_HOST_GID}
-    depends_on:
-      mysql:
-        condition: service_healthy
-    environment:
-      - NODE_ENV=production
-    restart: on-failure:10
+    ports:
+      - "${DEVENV_SSH_PORT:?Missing DEVENV_SSH_PORT}:22"
     volumes:
-      - ./:/home/node/bot
-    working_dir: "/home/node/bot"
-    command: >
-      bash -c "npm i && npm run build && npm run migrate && npm start"
+      - ./:/home/ubuntu/app
+      - ~/.ssh:/home/ubuntu/.ssh
+      - vscode-remote:/home/ubuntu/.vscode-remote
+      - vscode-server:/home/ubuntu/.vscode-server
+      - jetbrains-data:/home/ubuntu/.cache/JetBrains
 
 volumes:
-  mysql:
+  mysql: {}
+  vscode-remote: {}
+  vscode-server: {}
+  jetbrains-data: {}
