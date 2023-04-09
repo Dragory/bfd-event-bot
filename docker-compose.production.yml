@@ -10,8 +10,8 @@ services:
     environment:
       - NODE_ENV=production
     volumes:
-      - ./:/home/node/bot
+      - ./:/bot
     restart: on-failure:10
-    working_dir: "/home/node/bot"
+    working_dir: "/bot"
     command: >
       bash -c "id && npm i && npm run build && npm run migrate && npm start"

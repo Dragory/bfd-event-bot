@@ -7,4 +7,7 @@ ARG HOST_USER_GID
 # See https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#non-root-user
 RUN groupmod -g "${HOST_USER_UID}" node && usermod -u "${HOST_USER_UID}" -g "${HOST_USER_GID}" node
 
+RUN mkdir /bot
+RUN chown node:node /bot
+
 USER node
