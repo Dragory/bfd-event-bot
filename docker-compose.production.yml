@@ -1,17 +1,31 @@
 version: '3'
 name: bfd-event-bot
 services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD?:Missing MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: bfd-easter-bot
+      MYSQL_USER: bfd-easter-bot
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD?:Missing MYSQL_PASSWORD}
+    ports:
+      - 3306:3306
+    command: --authentication-policy=mysql_native_password
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=\"${MYSQL_ROOT_PASSWORD}\" --execute \"SHOW DATABASES;\""
+      interval: 5s
+      timeout: 300s
+      retries: 60
+
   bot:
     build:
       context: .
-      args:
-        HOST_USER_UID: ${HOST_USER_UID:?Missing HOST_USER_UID}
-        HOST_USER_GID: ${HOST_USER_GID:?Missing HOST_USER_GID}
+    depends_on:
+      mysql:
+        condition: service_healthy
     environment:
       - NODE_ENV=production
-    volumes:
-      - ./:/bot
     restart: on-failure:10
-    working_dir: "/bot"
+    working_dir: "/home/node/bot" # Copied in Dockerfile
     command: >
-      bash -c "id && npm i && npm run build && npm run migrate && npm start"
+      bash -c "npm i && npm run build && npm run migrate && npm start"

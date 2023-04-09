@@ -7,21 +7,26 @@ export class CreateMemberEasterEggTable1680862785268 implements MigrationInterfa
         columns: [
           new TableColumn({
             name: "id",
-            type: "INTEGER",
+            type: "INT",
+            unsigned: true,
+            isGenerated: true,
             generationStrategy: "increment",
             isPrimary: true,
           }),
           new TableColumn({
             name: "guild_id",
-            type: "TEXT",
+            type: "BIGINT",
+            unsigned: true,
           }),
           new TableColumn({
             name: "member_id",
-            type: "TEXT",
+            type: "BIGINT",
+            unsigned: true,
           }),
           new TableColumn({
             name: "message_id",
-            type: "TEXT",
+            type: "BIGINT",
+            unsigned: true,
           }),
         ],
         indices: [

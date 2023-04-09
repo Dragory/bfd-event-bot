@@ -4,6 +4,7 @@ dotenv.config();
 
 const envConstantsSchema = z.object({
   TOKEN: z.string(),
+  MYSQL_PASSWORD: z.string(),
 });
 
 let envConstants: z.TypeOf<typeof envConstantsSchema>;
@@ -19,7 +20,6 @@ try {
 }
 
 export const Constants = {
-  dataDir: "./data",
   configDir: "./config",
   env: envConstants,
 };

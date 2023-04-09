@@ -1,10 +1,20 @@
-import path from "node:path";
 import { DataSource } from "typeorm";
 import { Constants } from "./constants";
 
 export const dataSource = new DataSource({
-  type: "sqlite",
-  database: path.join(Constants.dataDir, "database.sqlite"),
+  type: "mysql",
+
+  host: "mysql",
+  username: "bfd-easter-bot",
+  password: Constants.env.MYSQL_PASSWORD,
+  database: "bfd-easter-bot",
+
+  charset: "utf8mb4",
+  timezone: "UTC",
+  supportBigNumbers: true,
+  bigNumberStrings: true,
+  dateStrings: true,
+
   entities: [
     "./dist/**/*.entity.js",
   ],
