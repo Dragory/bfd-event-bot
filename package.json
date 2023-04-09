@@ -3,6 +3,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "start": "node dist/index.js",
     "typeorm": "node ./node_modules/typeorm/cli.js",
     "migrate": "npm run typeorm -- migration:run -d dist/dataSource.js",
     "rollback": "npm run typeorm -- migration:revert -d dist/dataSource.js"
