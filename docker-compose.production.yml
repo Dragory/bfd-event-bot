@@ -2,13 +2,16 @@ version: '3'
 name: bfd-event-bot
 services:
   bot:
-    image: "node:16"
-    user: "node"
-    working_dir: "/home/node/bot"
-    restart: on-failure:10
+    build:
+      context: .
+      args:
+        HOST_USER_UID: ${HOST_USER_UID:?Missing HOST_USER_UID}
+        HOST_USER_GID: ${HOST_USER_GID:?Missing HOST_USER_GID}
     environment:
       - NODE_ENV=production
     volumes:
       - ./:/home/node/bot
+    restart: on-failure:10
+    working_dir: "/home/node/bot"
     command: >
-      bash -c "npm i && npm run build && npm run migrate && npm start"
+      bash -c "id && npm i && npm run build && npm run migrate && npm start"
