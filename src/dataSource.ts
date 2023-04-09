@@ -5,9 +5,9 @@ export const dataSource = new DataSource({
   type: "mysql",
 
   host: "mysql",
-  username: "bfd-easter-bot",
+  username: "bfd-event-bot",
   password: Constants.env.MYSQL_PASSWORD,
-  database: "bfd-easter-bot",
+  database: "bfd-event-bot",
 
   charset: "utf8mb4",
   timezone: "UTC",

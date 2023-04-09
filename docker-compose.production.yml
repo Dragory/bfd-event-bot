@@ -5,8 +5,8 @@ services:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD?:Missing MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: bfd-easter-bot
-      MYSQL_USER: bfd-easter-bot
+      MYSQL_DATABASE: bfd-event-bot
+      MYSQL_USER: bfd-event-bot
       MYSQL_PASSWORD: ${MYSQL_PASSWORD?:Missing MYSQL_PASSWORD}
     ports:
       - 3306:3306
