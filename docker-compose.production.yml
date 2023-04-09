@@ -11,4 +11,4 @@ services:
     volumes:
       - ./:/home/node/bot
     command: >
-      bash -c "node -v && npm run build && npm run migrate && npm start"
+      bash -c "npm i && npm run build && npm run migrate && npm start"
