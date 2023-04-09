@@ -3,6 +3,7 @@ import { EasterEventPluginConfigSchema, EasterEventPluginType } from "./types";
 import { Queue } from "../../utils/Queue";
 import { findEggContextMenuCommand } from "./commands/findEggContextMenuCommand";
 import { listWinnersCommand } from "./commands/listWinnersCommand";
+import { findEggSlashCommand } from "./commands/findEggSlashCommand";
 
 export const EasterEventPlugin = guildPlugin<EasterEventPluginType>()({
   name: "easter_event",
@@ -10,6 +11,7 @@ export const EasterEventPlugin = guildPlugin<EasterEventPluginType>()({
 
   slashCommands: [
     listWinnersCommand,
+    findEggSlashCommand,
   ],
 
   contextMenuCommands: [
