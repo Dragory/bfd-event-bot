@@ -5,6 +5,7 @@ services:
     image: "node:16"
     user: "node"
     working_dir: "/home/node/bot"
+    restart: on-failure:10
     environment:
       - NODE_ENV=production
     volumes:
